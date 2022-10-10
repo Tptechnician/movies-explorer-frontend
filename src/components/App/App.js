@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import Header from '../Header/Header';
 
 function App() {
-  return <div className="app">Диплом</div>;
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  return (
+    <div className="app">
+      <Header loggedIn={loggedIn} />
+    </div>
+  );
 }
 
 export default App;
