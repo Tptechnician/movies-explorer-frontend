@@ -2,7 +2,7 @@ import React from 'react';
 import './AuthorizedNavigation.css';
 import { Link, Route, Switch } from 'react-router-dom';
 
-function AuthorizedNavigation() {
+function AuthorizedNavigation({ onToggleMenu }) {
   return (
     <>
       <Switch>
@@ -22,7 +22,7 @@ function AuthorizedNavigation() {
           </div>
         </Route>
       </Switch>
-      <button className="authorized-navigation__button-menu" />
+      <button className="authorized-navigation__button-menu" onClick={onToggleMenu} />
     </>
   );
 }

@@ -25,6 +25,14 @@
   margin-left: 30px;
 }
 
+.auth-navigation__link:hover {
+  opacity: 0.7;
+}
+
+.auth-navigation__link-button:hover {
+  opacity: 0.8;
+}
+
 @media (min-width: 320px) and (max-width: 425px) {
   .auth-navigation__link-button {
     font-size: 10px;

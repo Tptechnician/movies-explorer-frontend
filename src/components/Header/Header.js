@@ -1,13 +1,13 @@
 import React from 'react';
 import './Header.css';
-import LogoImage from '../LogoImage/LogoImage';
+import LogoLink from '../LogoLink/LogoLink';
 import Navigation from '../Navigation/Navigation';
 
-function Header({ loggedIn }) {
+function Header({ loggedIn, onToggleMenu }) {
   return (
     <header className={!loggedIn ? 'header' : 'header header_background-black'}>
-      <LogoImage />
-      <Navigation loggedIn={loggedIn} />
+      <LogoLink />
+      <Navigation loggedIn={loggedIn} onToggleMenu={onToggleMenu} />
     </header>
   );
 }
