@@ -1,10 +1,11 @@
 import React from 'react';
 import './AboutProject.css';
+import Title from '../Title/Title';
 
 function AboutProject() {
   return (
     <section id='about-project' className='about-project'>
-      <h2 className='about-project__title'>О проекте</h2>
+      <Title title={'О проекте'} />
       <ul className='about-project__info'>
         <li className='about-project__info__list'>
           <h3 className='about-project__info__list__title'>Дипломный проект включал 5 этапов</h3>
