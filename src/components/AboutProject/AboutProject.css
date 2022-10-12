@@ -56,9 +56,6 @@
   grid-template-columns: 1fr 4fr;
 }
 
-.about-project__time-bar__first-column {
-}
-
 .about-project__time-bar__first-column__time {
   margin: 0;
   padding: 10px;
@@ -80,9 +77,6 @@
   color: #8b8b8b;
 }
 
-.about-project__time-bar__second-column {
-}
-
 .about-project__time-bar__second-column__time {
   margin: 0;
   padding: 10px;
@@ -102,4 +96,79 @@
   line-height: 17px;
   text-align: center;
   color: #8b8b8b;
+}
+
+@media (min-width: 426px) and (max-width: 768px) {
+  .about-project {
+    margin: 0;
+    padding: 91px 50px 90px;
+  }
+  .about-project__info {
+    gap: 36px;
+  }
+  .about-project__info__list__subtitle {
+    margin: 22px 0 0 0;
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .about-project__time-bar {
+    margin: 92px 0 0 0;
+  }
+  .about-project__time-bar__first-column {
+    width: 140px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 425px) {
+  .about-project {
+    margin: 0;
+    padding: 70px 18px 90px;
+  }
+  .about-project__title {
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: -0.7px;
+    padding-bottom: 27px;
+  }
+  .about-project__info {
+    margin: 61px 0 0 0;
+    flex-direction: column;
+    gap: 57px;
+  }
+  .about-project__info__list__title {
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: -0.7px;
+  }
+  .about-project__info__list__subtitle {
+    margin: 15px 0 0 0;
+    font-size: 11px;
+    line-height: 16px;
+  }
+  .about-project__time-bar {
+    margin: 62px 0 0 0;
+  }
+  .about-project__time-bar__first-column {
+    width: 100px;
+  }
+  .about-project__time-bar__first-column__time {
+    padding: 10px;
+    font-size: 11px;
+    line-height: 13px;
+  }
+  .about-project__time-bar__first-column__subtitle {
+    margin: 10px 0 0 0;
+    font-size: 11px;
+    line-height: 13px;
+  }
+  .about-project__time-bar__second-column__time {
+    font-size: 11px;
+    line-height: 13px;
+  }
+
+  .about-project__time-bar__second-column__subtitle {
+    margin: 10px 0 0 0;
+    font-size: 11px;
+    line-height: 13px;
+  }
 }
