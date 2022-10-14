@@ -20,17 +20,32 @@ function AboutMe() {
           <nav>
             <ul className='about-me__links'>
               <li>
-                <a className='about-me__link' href='https://github.com/Tptechnician'>
+                <a
+                  className='about-me__link'
+                  href='https://github.com/Tptechnician'
+                  target={'_blank'}
+                  rel={'noreferrer'}
+                >
                   Github
                 </a>
               </li>
               <li>
-                <a className='about-me__link' href='https://t.me/Tptechnician'>
+                <a
+                  className='about-me__link'
+                  href='https://t.me/Tptechnician'
+                  target={'_blank'}
+                  rel={'noreferrer'}
+                >
                   Telegram
                 </a>
               </li>
               <li>
-                <a className='about-me__link' href='https://vk.com/tptechnician'>
+                <a
+                  className='about-me__link'
+                  href='https://vk.com/tptechnician'
+                  target={'_blank'}
+                  rel={'noreferrer'}
+                >
                   Vkontakte
                 </a>
               </li>

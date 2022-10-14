@@ -1,6 +1,6 @@
 .about-me {
   margin: 0;
-  padding: 111px 70px 20px;
+  padding: 111px 70px 0;
 }
 
 .about-me__conteiner {
@@ -85,7 +85,7 @@
 @media (min-width: 426px) and (max-width: 768px) {
   .about-me {
     margin: 0;
-    padding: 91px 50px 20px;
+    padding: 91px 50px 0;
   }
   .about-me__name {
     font-size: 40px;
@@ -111,7 +111,7 @@
 @media (min-width: 320px) and (max-width: 560px) {
   .about-me {
     margin: 0;
-    padding: 51px 14px 20px;
+    padding: 51px 14px 0;
   }
   .about-me__conteiner {
     margin: 60px 0 0 0;
@@ -138,6 +138,7 @@
     line-height: 16px;
   }
   .about-me__image {
+    margin: 0 auto;
     width: 292px;
     height: 352px;
   }

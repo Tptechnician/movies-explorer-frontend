@@ -3,6 +3,7 @@ import './App.css';
 import Header from '../Header/Header';
 import Menu from '../Menu/Menu';
 import Main from '../Main/Main';
+import Footer from '../Footer/Footer';
 import { Route, Switch } from 'react-router-dom';
 
 function App() {
@@ -14,14 +15,15 @@ function App() {
   }
 
   return (
-    <div className="app">
+    <div className='app'>
       <Header loggedIn={loggedIn} onToggleMenu={toggleMenu} />
       <Menu isOpen={isMenuOpen} onToggleMenu={toggleMenu} />
       <Switch>
-        <Route path="/">
+        <Route path='/'>
           <Main />
         </Route>
       </Switch>
+      <Footer />
     </div>
   );
 }
