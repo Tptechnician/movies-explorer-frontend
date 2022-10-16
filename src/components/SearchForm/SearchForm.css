@@ -1,0 +1,124 @@
+.searchForm {
+  position: relative;
+  margin: 73px 0 0 0;
+  padding: 0 30px 0 19px;
+  height: 72px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.02);
+  background: #222222;
+  border-radius: 9px;
+}
+
+.searchForm__coteiner {
+  width: 82%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.searchForm__coteiner-input {
+  display: flex;
+  align-items: center;
+  width: 90%;
+}
+
+.searchForm__input {
+  margin-left: 8px;
+  background-color: #222222;
+  border: 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: #ffffff;
+  flex-grow: 1;
+  width: 95%;
+}
+
+.searchForm__input::placeholder {
+  color: #8b8b8b;
+}
+
+.searchForm__input:focus {
+  outline: 1px solid #ffffff;
+  border-radius: 50px;
+}
+
+.searchForm__button {
+  outline: none;
+  border: none;
+  width: 58px;
+  padding: 8px 0;
+  margin-right: 20px;
+  background-color: #4285f4;
+  border-radius: 48px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 18px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.searchForm__button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.searchForm__coteiner-checkbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+}
+
+.searchForm__films {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  color: #ffffff;
+}
+
+.searchForm__tumbler {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.searchForm__checkbox {
+  display: none;
+}
+
+.searchForm__slider {
+  position: absolute;
+  inset: 0;
+  background-color: #343434;
+  border-radius: 16px;
+  transition: 0.6s;
+  transform: scale(-1, -1);
+}
+
+.searchForm__slider::before {
+  position: absolute;
+  content: '';
+  height: 14px;
+  width: 14px;
+  left: 2px;
+  bottom: 2px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  background-color: #2be080;
+}
+
+.searchForm__checkbox:checked + .searchForm__slider {
+  background-color: #2be080;
+}
+
+.searchForm__checkbox:checked + .searchForm__slider::before {
+  transform: translateX(16px);
+}

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
 import Menu from '../Menu/Menu';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
-import { Route, Switch } from 'react-router-dom';
+import Movies from '../Movies/Movies';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   function toggleMenu() {
@@ -19,8 +20,11 @@ function App() {
       <Header loggedIn={loggedIn} onToggleMenu={toggleMenu} />
       <Menu isOpen={isMenuOpen} onToggleMenu={toggleMenu} />
       <Switch>
-        <Route path='/'>
+        <Route exact path='/'>
           <Main />
+        </Route>
+        <Route path='/movies'>
+          <Movies />
         </Route>
       </Switch>
       <Footer />
