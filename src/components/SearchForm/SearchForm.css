@@ -9,13 +9,16 @@
   box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.02);
   background: #222222;
   border-radius: 9px;
+  gap: 20px;
 }
 
 .searchForm__coteiner {
   width: 82%;
+  border-right: 1px solid #505050;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
 }
 
 .searchForm__coteiner-input {
@@ -35,6 +38,7 @@
   color: #ffffff;
   flex-grow: 1;
   width: 95%;
+  height: 40px;
 }
 
 .searchForm__input::placeholder {
@@ -121,4 +125,45 @@
 
 .searchForm__checkbox:checked + .searchForm__slider::before {
   transform: translateX(16px);
+}
+
+@media (min-width: 426px) and (max-width: 768px) {
+  .searchForm {
+    margin: 83px 0 0 0;
+    padding: 0 20px 0 21px;
+  }
+  .searchForm__button {
+    width: 65px;
+    margin-right: 18px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .searchForm {
+    margin: 83px 0 0 0;
+    padding: 0 20px 0 9px;
+  }
+  .searchForm__icon {
+    display: none;
+  }
+  .searchForm__button {
+    width: 68px;
+    margin-right: 0;
+  }
+  .searchForm__input {
+    font-size: 14px;
+  }
+  .searchForm__films {
+    font-size: 11px;
+  }
+  .searchForm__coteiner {
+    width: 100%;
+    border: none;
+  }
+  .searchForm__coteiner-checkbox {
+    position: absolute;
+    gap: 13px;
+    top: 107px;
+    left: 76px;
+  }
 }

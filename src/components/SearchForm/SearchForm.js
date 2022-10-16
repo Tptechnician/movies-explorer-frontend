@@ -20,7 +20,7 @@ function SearchForm() {
     <form className='searchForm'>
       <div className='searchForm__coteiner'>
         <div className='searchForm__coteiner-input'>
-          <SearchFormIcon />
+          <SearchFormIcon className='searchForm__icon' />
           <input className='searchForm__input' placeholder='Фильм' type='text' required />
         </div>
         <button className='searchForm__button' type='submit' onClick={handleSubmit}>
