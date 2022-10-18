@@ -140,6 +140,7 @@
 
 @media screen and (max-width: 600px) {
   .searchForm {
+    flex-direction: column;
     margin: 83px 0 0 0;
     padding: 0 20px 0 9px;
   }
@@ -157,13 +158,15 @@
     font-size: 11px;
   }
   .searchForm__coteiner {
+    margin-top: 15px;
     width: 100%;
     border: none;
   }
   .searchForm__coteiner-checkbox {
-    position: absolute;
+    margin-top: 30px;
     gap: 13px;
-    top: 107px;
-    left: 76px;
+  }
+  .searchForm__tumbler {
+    margin-left: 12px;
   }
 }

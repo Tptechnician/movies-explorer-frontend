@@ -4,7 +4,7 @@ import { ReactComponent as SearchFormIcon } from '../../images/searchform-icon.s
 
 function SearchForm() {
   const [checkbox, setСheckbox] = useState(false);
-  console.log(checkbox);
+
   function handleSubmit(e) {
     e.preventDefault();
     console.log('Поиск фильма сработал');
@@ -13,7 +13,7 @@ function SearchForm() {
   function handleСheckboxChange() {
     const newСheckbox = !checkbox;
     setСheckbox(newСheckbox);
-    console.log(`Сheckbox сработал: ${checkbox}`);
+    console.log(`Сheckbox сработал: ${newСheckbox}`);
   }
 
   return (
