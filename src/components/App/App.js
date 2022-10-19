@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
 import Menu from '../Menu/Menu';
@@ -7,9 +8,11 @@ import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
+import Register from '../Register/Register';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const { pathname } = useLocation();
+  const [loggedIn, setLoggedIn] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   function toggleMenu() {
@@ -18,11 +21,21 @@ function App() {
 
   return (
     <div className='app'>
-      <Header loggedIn={loggedIn} onToggleMenu={toggleMenu} />
+      {pathname === '/' ||
+      pathname === '/movies' ||
+      pathname === '/saved-movies' ||
+      pathname === '/profile' ? (
+        <Header loggedIn={loggedIn} onToggleMenu={toggleMenu} />
+      ) : (
+        ''
+      )}
       <Menu isOpen={isMenuOpen} onToggleMenu={toggleMenu} />
       <Switch>
         <Route exact path='/'>
           <Main />
+        </Route>
+        <Route exact path='/signup'>
+          <Register />
         </Route>
         <Route path='/movies'>
           <Movies />
@@ -31,7 +44,14 @@ function App() {
           <SavedMovies />
         </Route>
       </Switch>
-      <Footer />
+      {pathname === '/' ||
+      pathname === '/movies' ||
+      pathname === '/saved-movies' ||
+      pathname === '/profile' ? (
+        <Footer />
+      ) : (
+        ''
+      )}
     </div>
   );
 }
