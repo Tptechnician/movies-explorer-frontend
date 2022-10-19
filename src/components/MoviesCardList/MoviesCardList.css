@@ -11,7 +11,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   gap: 38px 18px;
-  justify-items: start;
+  justify-items: center;
   justify-content: center;
   box-sizing: border-box;
 }
@@ -40,4 +40,26 @@
 
 .moviesCards__button:hover {
   opacity: 0.6;
+}
+
+@media screen and (max-width: 768px) {
+  .moviesCards__list {
+    grid-template-columns: repeat(auto-fit, minmax(339px, 1fr));
+    gap: 29px 28px;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .moviesCards {
+    padding: 50px 0 0;
+  }
+  .moviesCards__list {
+    gap: 35px;
+  }
+  .moviesCards__button__conteiner {
+    margin: 61px auto 99px;
+  }
+  .moviesCards__button {
+    width: 240px;
+  }
 }

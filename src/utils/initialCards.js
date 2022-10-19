@@ -253,7 +253,7 @@ export const initialCards = [
       created_at: '2020-12-02T20:34:50.858Z',
       updated_at: '2020-12-02T20:34:50.858Z',
     },
-  },
+  } /*,
   {
     id: 6,
     nameRU: 'Фавела на взрыве',
@@ -418,7 +418,7 @@ export const initialCards = [
       created_at: '2020-12-02T20:57:25.729Z',
       updated_at: '2020-12-02T20:57:25.729Z',
     },
-  },
+  } /*,
   {
     id: 9,
     nameRU: ' 196 ударов в минуту',
