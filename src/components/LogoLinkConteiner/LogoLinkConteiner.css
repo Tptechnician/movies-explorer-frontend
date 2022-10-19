@@ -1,5 +1,12 @@
 .logo-link-conteiner {
   display: flex;
   align-items: flex-start;
-  width: 396px;
+  max-width: 396px;
+  width: 100%;
+}
+
+@media screen and (max-width: 460px) {
+  .logo-link-conteiner {
+    justify-content: center;
+  }
 }
