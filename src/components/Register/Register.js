@@ -34,7 +34,7 @@ function Register() {
     </p>
   );
   return (
-    <main className='register'>
+    <main className='auth'>
       <LogoLinkConteiner />
       <Form
         title='Добро пожаловать!'

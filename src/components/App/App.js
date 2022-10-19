@@ -9,6 +9,7 @@ import Footer from '../Footer/Footer';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Register from '../Register/Register';
+import Login from '../Login/Login';
 
 function App() {
   const { pathname } = useLocation();
@@ -36,6 +37,9 @@ function App() {
         </Route>
         <Route exact path='/signup'>
           <Register />
+        </Route>
+        <Route exact path='/signin'>
+          <Login />
         </Route>
         <Route path='/movies'>
           <Movies />

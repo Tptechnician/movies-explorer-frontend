@@ -37,6 +37,9 @@
   outline: none;
   border: none;
 }
+.form__button_login {
+  margin: 197px 0 0;
+}
 
 .form__button_active {
   background-color: #4285f4;
@@ -82,6 +85,9 @@
     margin: 216px 0 0;
     font-size: 12px;
     line-height: 15px;
+  }
+  .form__button_login {
+    margin: 285px 0 0;
   }
   .form__paragraph {
     margin: 14px 0 0;

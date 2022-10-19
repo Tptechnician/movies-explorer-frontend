@@ -1,4 +1,4 @@
-.register {
+.auth {
   max-width: 1140px;
   margin: 70px auto;
   display: flex;
@@ -7,13 +7,13 @@
 }
 
 @media screen and (max-width: 768px) {
-  .register {
+  .auth {
     margin: 232px auto;
   }
 }
 
 @media screen and (max-width: 460px) {
-  .register {
+  .auth {
     margin: 56px 0;
     padding: 0 30px;
   }
