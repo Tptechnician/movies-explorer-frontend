@@ -1,14 +1,22 @@
 import React from 'react';
 import './Form.css';
 
-function Form({ title, onSubmit, isDisabled, buttonText, linkAuthorization, StyleMod, children }) {
+function Form({
+  title,
+  onSubmit,
+  isDisabled,
+  buttonText,
+  linkAuthorization,
+  styleConfig,
+  children,
+}) {
   return (
-    <section className='form__conteiner'>
-      <h3 className='form__title'>{title}</h3>
+    <section className={`${styleConfig.formConteiner}`}>
+      <h3 className={`${styleConfig.title}`}>{title}</h3>
       <form className='form' noValidate onSubmit={onSubmit}>
         {children}
         <button
-          className={`form__button ${isDisabled ? 'form__button_active' : ''} ${StyleMod}`}
+          className={`${styleConfig.button} ${isDisabled ? styleConfig.buttonActive : ''} `}
           type='submit'
           disabled={!isDisabled}
         >

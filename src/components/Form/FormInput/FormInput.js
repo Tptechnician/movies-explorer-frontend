@@ -1,19 +1,19 @@
 import React from 'react';
 import './FormInput.css';
 
-function FormInput({ title, classNameErrors, value, name, handleChange, isValid, config }) {
+function FormInput({ title, textErrors, value, name, handleChange, isValid, config, styleConfig }) {
   return (
-    <label className='form__input-wraper'>
-      <h6 className='form__input-title'>{title}</h6>
+    <label className={`${styleConfig.inputWraper}`}>
+      <h6 className={`${styleConfig.inputTitle}`}>{title}</h6>
       <input
-        className={`form__input ${classNameErrors ? 'form__input_type_error' : ''}`}
+        className={`${styleConfig.input} ${textErrors ? styleConfig.inputError : ''}`}
         value={value || ''}
         name={name}
         {...config}
         required
         onChange={handleChange}
       />
-      <p className='form__error'>{isValid ? '' : classNameErrors}</p>
+      <p className={`${styleConfig.error}`}>{isValid ? '' : textErrors}</p>
     </label>
   );
 }

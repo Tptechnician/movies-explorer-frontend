@@ -16,6 +16,18 @@ const configurationInput = {
   },
 };
 
+const styleConfig = {
+  formConteiner: 'form__conteiner',
+  title: 'form__title',
+  inputWraper: 'form__input-wraper',
+  inputTitle: 'form__input-title',
+  input: 'form__input',
+  inputError: 'form__input_type_error',
+  error: 'form__error',
+  button: 'form__button form__button_login',
+  buttonActive: 'form__button_active',
+};
+
 function Register() {
   const { values, isValid, errors, resetErrors, handleChange } = FormValidator({});
 
@@ -43,32 +55,36 @@ function Register() {
         isDisabled={isValid}
         buttonText='Зарегистрироваться'
         linkAuthorization={linkAuthorization}
+        styleConfig={styleConfig}
       >
         <FormInput
           title='Имя'
-          classNameErrors={errors.name}
+          textErrors={errors.name}
           value={values.name}
           name='name'
           handleChange={handleChange}
           isValid={isValid}
           config={configurationInput.name}
+          styleConfig={styleConfig}
         />
         <FormInput
           title='E-mail'
-          classNameErrors={errors.email}
+          textErrors={errors.email}
           value={values.email}
           name='email'
           handleChange={handleChange}
           isValid={isValid}
+          styleConfig={styleConfig}
         />
         <FormInput
           title='Пароль'
-          classNameErrors={errors.password}
+          textErrors={errors.password}
           value={values.password}
           name='password'
           handleChange={handleChange}
           isValid={isValid}
           config={configurationInput.password}
+          styleConfig={styleConfig}
         />
       </Form>
     </main>

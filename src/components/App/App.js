@@ -10,10 +10,11 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
+import Profile from '../Profile/Profile';
 
 function App() {
   const { pathname } = useLocation();
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   function toggleMenu() {
@@ -41,6 +42,9 @@ function App() {
         <Route exact path='/signin'>
           <Login />
         </Route>
+        <Route exact path='/profile'>
+          <Profile />
+        </Route>
         <Route path='/movies'>
           <Movies />
         </Route>
@@ -48,14 +52,7 @@ function App() {
           <SavedMovies />
         </Route>
       </Switch>
-      {pathname === '/' ||
-      pathname === '/movies' ||
-      pathname === '/saved-movies' ||
-      pathname === '/profile' ? (
-        <Footer />
-      ) : (
-        ''
-      )}
+      {pathname === '/' || pathname === '/movies' || pathname === '/saved-movies' ? <Footer /> : ''}
     </div>
   );
 }
