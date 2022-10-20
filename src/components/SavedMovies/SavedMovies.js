@@ -8,7 +8,7 @@ function SavedMovies() {
   const [searchFormError, setSearchFormError] = useState(false);
   const textError = 'Ошибка SearchForm';
   return (
-    <section className='movies'>
+    <main className='movies'>
       <div className='movies__wrapper'>
         <SearchForm />
       </div>
@@ -17,7 +17,7 @@ function SavedMovies() {
       ) : (
         <MoviesCardList initialCards={savedInitialCards} />
       )}
-    </section>
+    </main>
   );
 }
 
