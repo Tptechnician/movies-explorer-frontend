@@ -1,7 +1,7 @@
 .header {
   background-color: #073042;
   margin: 0 auto;
-  padding: 0 70px;
+  padding: 0 calc((100vw - 1140px) / 2);
   max-width: 100%;
   min-height: 71px;
   display: flex;
@@ -9,7 +9,17 @@
   align-items: center;
 }
 
-@media (max-width: 768px) {
+.header_background-black {
+  background-color: #202020;
+}
+
+@media (min-width: 861px) and (max-width: 1200px) {
+  .header {
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 860px) {
   .header {
     padding: 0 30px;
   }
@@ -19,8 +29,4 @@
   .header {
     padding: 0 14px;
   }
-}
-
-.header_background-black {
-  background-color: #202020;
 }
