@@ -15,7 +15,7 @@
 }
 
 .form__input_profile {
-  max-width: 200px;
+  max-width: 220px;
   text-align: right;
   font-size: 11px;
   line-height: 13px;
@@ -60,6 +60,7 @@
 .form__input_profile:focus {
   border: 1px solid #4285f4;
   border-radius: 5px;
+  box-shadow: 0 0 10px #4285f4;
 }
 
 .form__input-title {

@@ -1,6 +1,5 @@
 import React from 'react';
 import './Profile.css';
-import { Link } from 'react-router-dom';
 import { FormValidator } from '../../utils/FormValidator';
 import Form from '../Form/Form';
 import FormInput from '../Form/FormInput/FormInput';

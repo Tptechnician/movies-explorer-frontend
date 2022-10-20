@@ -122,18 +122,37 @@
   opacity: 0.6;
 }
 
+@media screen and (max-width: 768px) {
+  .form__title_profile {
+    margin: 40px 0 89px;
+  }
+  .form__button_profile {
+    margin: 169px auto 0;
+  }
+}
+
 @media screen and (max-width: 460px) {
   .form__title {
     margin: 50px 0 80px;
     text-align: center;
   }
   .form__button {
-    margin: 216px 0 0;
+    margin: 216px auto 0;
     font-size: 12px;
     line-height: 15px;
   }
   .form__button_login {
     margin: 285px 0 0;
+  }
+  .form__button_profile {
+    margin: 338px auto 0;
+  }
+  .form__button__login-out {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .form__title_profile {
+    margin: 50px 0 73px;
   }
   .form__paragraph {
     margin: 14px 0 0;
