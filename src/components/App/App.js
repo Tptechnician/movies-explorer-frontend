@@ -15,7 +15,7 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 
 function App() {
   const { pathname } = useLocation();
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   function toggleMenu() {
