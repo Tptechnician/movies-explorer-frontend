@@ -46,7 +46,7 @@
 }
 
 .searchForm__input:focus {
-  outline: 1px solid #ffffff;
+  outline: 1px solid #4285f4;
   border-radius: 50px;
 }
 
