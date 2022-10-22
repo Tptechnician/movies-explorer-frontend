@@ -1,0 +1,79 @@
+.page-not-found {
+  padding: 246px 0 297px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.page-not-found__container {
+  width: 100%;
+}
+
+.page-not-found__title {
+  margin: 0;
+  font-weight: 400;
+  font-size: 140px;
+  line-height: 169px;
+  color: #fff;
+}
+
+.page-not-found__text {
+  margin: 5px 0 0;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #fff;
+}
+
+.page-not-found__link {
+  width: fit-content;
+  align-self: center;
+  color: #4285f4;
+  font-size: 14px;
+  line-height: 17px;
+  text-decoration: none;
+}
+
+.page-not-found__link:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .page-not-found {
+    padding: 408px 0 222px;
+  }
+
+  .page-not-found__link {
+    margin-top: 184px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .page-not-found {
+    padding: 330px 0 190px;
+  }
+
+  .page-not-found__link {
+    margin-top: 284px;
+  }
+
+  .page-not-found__title {
+    font-size: 80px;
+    line-height: 97px;
+  }
+
+  .page-not-found__text {
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .page-not-found__link {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

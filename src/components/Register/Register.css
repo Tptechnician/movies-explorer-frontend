@@ -1,0 +1,26 @@
+.auth {
+  max-width: 1140px;
+  margin: 70px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .auth {
+    margin: 232px auto;
+  }
+  .auth_profile {
+    margin: 199px auto;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .auth {
+    margin: 56px 0;
+    padding: 0 30px;
+  }
+  .auth_profile {
+    margin: 23px auto;
+  }
+}

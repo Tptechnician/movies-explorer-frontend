@@ -1,0 +1,47 @@
+[33mcommit 73ecc0fe2860b2ae92209082e888dc78cc1c3df0[m[33m ([m[1;36mHEAD -> [m[1;32mlevel-2[m[33m, [m[1;31morigin/level-2[m[33m)[m
+Author: Pavel Demin <deminps.2008@gmail.com>
+Date:   Wed Oct 12 22:42:46 2022 +0500
+
+    HTML-markup: Component/about-project
+
+[33mcommit 399b1b8d04d1cf00554f4b96d6eca6d0bf1e1f3b[m
+Author: Pavel Demin <deminps.2008@gmail.com>
+Date:   Wed Oct 12 20:04:23 2022 +0500
+
+    HTML-markup: Component Promo: adaptive markup
+
+[33mcommit ea66a2ef2a40d171dae3723d4f1f7267a084dce0[m
+Author: Pavel Demin <deminps.2008@gmail.com>
+Date:   Wed Oct 12 19:10:42 2022 +0500
+
+    HTML-markup: Component: promo
+
+[33mcommit e7999543981cefaf448ae3d9cb00ef94150a9036[m
+Author: Pavel Demin <deminps.2008@gmail.com>
+Date:   Tue Oct 11 21:29:56 2022 +0500
+
+    feat: menu
+
+[33mcommit ef95a2db7d24274a4f1cd758e40f13759ed1318f[m
+Author: Pavel Demin <deminps.2008@gmail.com>
+Date:   Mon Oct 10 18:08:23 2022 +0500
+
+    feat: Header layout with adaptive
+
+[33mcommit 1e62bdea42b24ce5a877a74ed3e338f924e6da8c[m
+Author: Pavel Demin <deminps.2008@gmail.com>
+Date:   Tue Oct 4 18:09:34 2022 +0500
+
+    creating a file structure
+
+[33mcommit 9cd6b321381735e14e14a698e753f13d6dd32944[m
+Author: Pavel Demin <deminps.2008@gmail.com>
+Date:   Tue Oct 4 16:06:28 2022 +0500
+
+    первый коммит
+
+[33mcommit 3535ce063a2f06442aac67358c6db037bf67eaf2[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: Павел Дёмин <deminps.2008@gmail.com>
+Date:   Fri Sep 30 16:25:51 2022 +0500
+
+    Initial commit

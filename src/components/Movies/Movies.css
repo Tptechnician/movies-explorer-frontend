@@ -1,0 +1,27 @@
+.movies {
+  max-width: 1140px;
+  margin: auto;
+  padding: 0;
+}
+
+.movies__wrapper {
+  border-bottom: 1px solid #424242;
+  padding-bottom: 69px;
+}
+
+@media screen and (max-width: 1200px) {
+  .movies {
+    margin: 0;
+    padding: 0 30px;
+  }
+  .movies__wrapper {
+    padding-bottom: 109px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .movies {
+    margin: 0;
+    padding: 0 10px;
+  }
+}

@@ -1,0 +1,46 @@
+.auth-navigation__container {
+}
+
+.auth-navigation__link {
+  text-decoration: none;
+  color: white;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 0;
+  margin: 0;
+}
+
+.auth-navigation__link-button {
+  background: #3ddc84;
+  border-radius: 3px;
+  text-decoration: none;
+  color: #000000;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 8px 20px;
+  margin-left: 30px;
+}
+
+.auth-navigation__link:hover {
+  opacity: 0.7;
+}
+
+.auth-navigation__link-button:hover {
+  opacity: 0.8;
+}
+
+@media (min-width: 320px) and (max-width: 425px) {
+  .auth-navigation__link-button {
+    font-size: 10px;
+    padding: 7px 12px;
+    margin-left: 14px;
+  }
+
+  .auth-navigation__link {
+    font-size: 10px;
+  }
+}

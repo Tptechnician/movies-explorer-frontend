@@ -1,0 +1,145 @@
+.about-me {
+  margin: 0;
+  padding: 111px 70px 0;
+}
+
+.about-me__conteiner {
+  margin: 66px 0 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.about-me__conteiner__info {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  max-width: 590px;
+}
+
+.about-me__name {
+  margin: 0;
+  padding: 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  letter-spacing: -2px;
+  color: #ffffff;
+}
+
+.about-me__job {
+  margin: 19px 0 0 0;
+  padding: 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  color: #ffffff;
+}
+
+.about-me__description {
+  margin: 25px 0 76px;
+  padding: 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #ffffff;
+}
+
+.about-me__links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.about-me__link {
+  text-decoration: none;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+}
+
+.about-me__link:hover {
+  opacity: 0.7;
+}
+
+.about-me__image {
+  margin: 0;
+  padding: 0;
+  width: 270px;
+  height: 327px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+@media (min-width: 426px) and (max-width: 768px) {
+  .about-me {
+    margin: 0;
+    padding: 91px 50px 0;
+  }
+  .about-me__name {
+    font-size: 40px;
+    line-height: 40px;
+    letter-spacing: -1.7px;
+  }
+  .about-me__job {
+    margin: 16px 0 0 0;
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .about-me__description {
+    margin: 20px 0 86px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .about-me__image {
+    width: 255px;
+    height: 307px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 560px) {
+  .about-me {
+    margin: 0;
+    padding: 51px 14px 0;
+  }
+  .about-me__conteiner {
+    margin: 60px 0 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .about-me__name {
+    margin-top: 30px;
+    font-size: 30px;
+    line-height: 36px;
+    letter-spacing: -1.1px;
+  }
+  .about-me__job {
+    margin: 20px 0 0 0;
+    font-size: 11px;
+    line-height: 16px;
+  }
+  .about-me__description {
+    margin: 20px 0 23px;
+    font-size: 11px;
+    line-height: 16px;
+  }
+  .about-me__image {
+    margin: 0 auto;
+    width: 292px;
+    height: 352px;
+  }
+}
