@@ -10,6 +10,7 @@ const configurationInput = {
   name: {
     minLength: '2',
     maxLength: '40',
+    pattern: '[a-zA-Zа-яёА-ЯЁ -]{2,40}',
   },
   password: {
     minLength: '6',
@@ -28,12 +29,12 @@ const styleConfig = {
   buttonActive: 'form__button_active',
 };
 
-function Register() {
+function Register({ onSubmit }) {
   const { values, isValid, errors, resetErrors, handleChange } = FormValidator({});
 
-  function handleSubmit(evt) {
-    evt.preventDefault();
-    // props.onSubmit(values);
+  function handleSubmit(e) {
+    e.preventDefault();
+    onSubmit(values);
     resetErrors();
   }
 

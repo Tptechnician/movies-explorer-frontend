@@ -24,12 +24,12 @@ const styleConfig = {
   buttonActive: 'form__button_active',
 };
 
-function Login() {
+function Login({ onSubmit }) {
   const { values, isValid, errors, resetErrors, handleChange } = FormValidator({});
 
-  function handleSubmit(evt) {
-    evt.preventDefault();
-    // props.onSubmit(values);
+  function handleSubmit(e) {
+    e.preventDefault();
+    onSubmit(values);
     resetErrors();
   }
 

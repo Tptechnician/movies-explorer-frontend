@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Profile.css';
 import { FormValidator } from '../../utils/FormValidator';
 import Form from '../Form/Form';
 import FormInput from '../Form/FormInput/FormInput';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 const configurationInput = {
   name: {
@@ -26,21 +27,30 @@ const styleConfig = {
   buttonActive: 'form__button_active_profile',
 };
 
-function Profile() {
-  const { values, isValid, errors, resetErrors, handleChange } = FormValidator({});
+function Profile({ loggedOut, updateUser }) {
+  const currentUser = React.useContext(CurrentUserContext);
+  const { values, isValid, errors, resetErrors, handleChange, setValues } = FormValidator({});
 
-  function handleSubmit(evt) {
-    evt.preventDefault();
-    // props.onSubmit(values);
+  function handleSubmit(e) {
+    e.preventDefault();
+    updateUser(values);
     resetErrors();
   }
 
-  const linkAuthorization = <button className='form__button__login-out'>Выйти из аккаунта</button>;
+  useEffect(() => {
+    setValues({ name: currentUser.name, email: currentUser.email });
+  }, [currentUser]);
+
+  const linkAuthorization = (
+    <button className='form__button__login-out' onClick={loggedOut}>
+      Выйти из аккаунта
+    </button>
+  );
 
   return (
     <main className='auth auth_profile'>
       <Form
-        title='Привет, Виталий!'
+        title={`Привет, ${currentUser.name}!`}
         name='login'
         onSubmit={handleSubmit}
         isDisabled={isValid}
@@ -51,7 +61,7 @@ function Profile() {
         <FormInput
           title='Имя'
           textErrors={errors.name}
-          value={values.name}
+          value={values.name || ''}
           name='name'
           handleChange={handleChange}
           isValid={isValid}
@@ -61,7 +71,7 @@ function Profile() {
         <FormInput
           title='E-mail'
           textErrors={errors.email}
-          value={values.email}
+          value={values.email || ''}
           name='email'
           handleChange={handleChange}
           isValid={isValid}
