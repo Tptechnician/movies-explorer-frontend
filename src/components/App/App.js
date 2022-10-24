@@ -14,7 +14,7 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import Auth from '../../utils/Auth';
+import MainApi from '../../utils/MainApi';
 import Popup from '../Popup/Popup';
 import Preloader from '../Preloader/Preloader';
 
@@ -38,7 +38,7 @@ function App() {
 
   function handleRegistration(data) {
     setIsLoading(true);
-    Auth.register(data)
+    MainApi.register(data)
       .then((data) => {
         history.push('/signin');
       })
@@ -53,7 +53,7 @@ function App() {
 
   function handleAuthorization(data) {
     setIsLoading(true);
-    Auth.authorize(data)
+    MainApi.authorize(data)
       .then((data) => {
         localStorage.setItem('loggedIn', 'true');
         setCurrentUser(data.user);
@@ -71,7 +71,7 @@ function App() {
 
   function handleUpdateUser(data) {
     setIsLoading(true);
-    Auth.updateUser(data)
+    MainApi.updateUser(data)
       .then((updatedUser) => {
         setCurrentUser(updatedUser);
       })
@@ -85,7 +85,7 @@ function App() {
   }
 
   function handleCheckToken() {
-    Auth.checkToken().then(
+    MainApi.checkToken().then(
       (data) => {
         setCurrentUser(data);
         setLoggedIn(true);
@@ -105,11 +105,14 @@ function App() {
   }, []);
 
   function handleLoggedOut() {
-    Auth.LoggedOut().then(
+    MainApi.LoggedOut().then(
       (res) => {
         setLoggedIn(false);
         setCurrentUser({});
         localStorage.removeItem('loggedIn');
+        localStorage.removeItem('movies');
+        localStorage.removeItem('moviesInputSearch');
+        localStorage.removeItem('moviesInputCheckbox');
         history.push('/');
       },
       (err) => {

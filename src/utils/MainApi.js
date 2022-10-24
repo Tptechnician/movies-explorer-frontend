@@ -1,4 +1,4 @@
-class Auth {
+class MainApi {
   constructor(data) {
     this._url = data.url;
     this._headers = data.headers;
@@ -64,11 +64,11 @@ class Auth {
   }
 }
 
-const auth = new Auth({
+const mainApi = new MainApi({
   url: 'http://localhost:3000',
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-export default auth;
+export default mainApi;
