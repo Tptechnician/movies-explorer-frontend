@@ -5,7 +5,7 @@ import { FormValidator } from '../../utils/FormValidator';
 
 function SearchForm({ formValid, textError, onSearch, onCheckbox, checkbox, inputValue }) {
   const { values, isValid, handleChange, setValues } = FormValidator({});
-  console.log(checkbox);
+
   function handleSubmit(e) {
     e.preventDefault();
     if (isValid) {
