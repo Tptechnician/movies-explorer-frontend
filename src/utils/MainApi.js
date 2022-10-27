@@ -55,11 +55,56 @@ class MainApi {
     }).then(this._getResponseData);
   }
 
-  LoggedOut() {
+  loggedOut() {
     return fetch(`${this._url}/signout`, {
       method: 'POST',
       credentials: 'include',
       headers: this._headers,
+    }).then(this._getResponseData);
+  }
+
+  changeSavedMoviesStatus(movie, saved, id) {
+    if (saved) {
+      return this.deleteMovies(id);
+    } else {
+      return this.addMovies(movie);
+    }
+  }
+
+  deleteMovies(id) {
+    return fetch(`${this._url}/movies/${id}`, {
+      credentials: 'include',
+      headers: this._headers,
+      method: 'DELETE',
+    }).then(this._getResponseData);
+  }
+
+  addMovies(movie) {
+    return fetch(`${this._url}/movies`, {
+      credentials: 'include',
+      headers: this._headers,
+      method: 'POST',
+      body: JSON.stringify({
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN,
+        image: `https://api.nomoreparties.co${movie.image.url}`,
+        trailerLink: movie.trailerLink,
+        thumbnail: `https://api.nomoreparties.co${movie.image.url}`,
+        movieId: movie.id,
+      }),
+    }).then(this._getResponseData);
+  }
+
+  getSavedMovies() {
+    return fetch(`${this._url}/movies`, {
+      credentials: 'include',
+      headers: this._headers,
+      method: 'GET',
     }).then(this._getResponseData);
   }
 }

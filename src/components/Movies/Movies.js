@@ -5,7 +5,7 @@ import MoviesApi from '../../utils/MoviesApi';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
 
-function Movies() {
+function Movies({ toggleSavedMovies, savedMovies }) {
   const [searchFormValid, setSearchFormValid] = useState(true);
   const [checkbox, setСheckbox] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -105,7 +105,11 @@ function Movies() {
         isLoading ? (
           <Preloader />
         ) : (
-          <MoviesCardList initialCards={foundMovies} />
+          <MoviesCardList
+            initialCards={foundMovies}
+            toggleSavedMovies={toggleSavedMovies}
+            savedMovies={savedMovies}
+          />
         )
       ) : (
         <section className='movies__error'>

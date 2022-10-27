@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
-function MoviesCardList({ initialCards }) {
+function MoviesCardList({ initialCards, toggleSavedMovies, savedMovies }) {
   const { pathname } = useLocation();
   const [sizeWidth, setSizeWidth] = useState('');
   const [moviesToRender, setMoviesToRender] = useState([]);
@@ -63,16 +63,21 @@ function MoviesCardList({ initialCards }) {
         setIsShowButtonMoreMovies(true);
       }
     } else if (pathname === '/saved-movies') {
-      setMoviesToRender(initialCards);
+      setMoviesToRender(savedMovies);
       setIsShowButtonMoreMovies(false);
     }
-  }, [initialCards, numberMoviesToRender]);
+  }, [initialCards, numberMoviesToRender, savedMovies]);
 
   return (
     <section className='moviesCards'>
       <ul className='moviesCards__list'>
         {moviesToRender.map((film) => (
-          <MoviesCard key={film.id} film={film} />
+          <MoviesCard
+            key={film.id || film._id}
+            film={film}
+            toggleSavedMovies={toggleSavedMovies}
+            savedMovies={savedMovies}
+          />
         ))}
       </ul>
       <div className='moviesCards__button__conteiner'>

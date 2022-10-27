@@ -21,13 +21,14 @@ import Preloader from '../Preloader/Preloader';
 function App() {
   const { pathname } = useLocation();
   const [currentUser, setCurrentUser] = useState({});
+  const [savedMovies, setSavedMovies] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isPopupOpen, setPopupOpen] = useState(false);
   const [popupTitle, setPopupTitle] = useState('');
   const history = useHistory();
-
+  console.log(savedMovies);
   function toggleMenu() {
     setIsMenuOpen(!isMenuOpen);
   }
@@ -57,6 +58,7 @@ function App() {
       .then((data) => {
         localStorage.setItem('loggedIn', 'true');
         setCurrentUser(data.user);
+        setSavedMovies(getMovies());
         setLoggedIn(true);
         history.push('/movies');
       })
@@ -88,6 +90,7 @@ function App() {
     MainApi.checkToken().then(
       (data) => {
         setCurrentUser(data);
+        getMovies();
         setLoggedIn(true);
         history.push('/movies');
       },
@@ -105,7 +108,7 @@ function App() {
   }, []);
 
   function handleLoggedOut() {
-    MainApi.LoggedOut().then(
+    MainApi.loggedOut().then(
       (res) => {
         setLoggedIn(false);
         setCurrentUser({});
@@ -119,6 +122,28 @@ function App() {
         console.log(err);
       },
     );
+  }
+
+  function getMovies() {
+    MainApi.getSavedMovies()
+      .then((savedMovies) => {
+        setSavedMovies(savedMovies);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function toggleSavedMovies(movie, saved, id) {
+    MainApi.changeSavedMoviesStatus(movie, saved, id)
+      .then((newMovies) => {
+        if (newMovies) {
+          getMovies();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (
@@ -155,12 +180,16 @@ function App() {
             component={Movies}
             loggedIn={loggedIn}
             isLoading={isLoading}
+            toggleSavedMovies={toggleSavedMovies}
+            savedMovies={savedMovies}
           />
           <ProtectedRoute
             path='/saved-movies'
             component={SavedMovies}
             loggedIn={loggedIn}
             isLoading={isLoading}
+            toggleSavedMovies={toggleSavedMovies}
+            savedMovies={savedMovies}
           />
           <Route path='*'>
             <PageNotFound />

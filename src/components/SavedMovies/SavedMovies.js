@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import './SavedMovies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import { savedInitialCards } from '../../utils/savedInitialCards';
 
-function SavedMovies() {
+function SavedMovies({ toggleSavedMovies, savedMovies }) {
   const [searchFormError, setSearchFormError] = useState(false);
   const textError = 'Ошибка SearchForm';
   return (
@@ -15,7 +14,7 @@ function SavedMovies() {
       {searchFormError ? (
         <div className='movies__error'>{textError}</div>
       ) : (
-        <MoviesCardList initialCards={savedInitialCards} />
+        <MoviesCardList savedMovies={savedMovies} toggleSavedMovies={toggleSavedMovies} />
       )}
     </main>
   );
