@@ -28,7 +28,7 @@ function App() {
   const [isPopupOpen, setPopupOpen] = useState(false);
   const [popupTitle, setPopupTitle] = useState('');
   const history = useHistory();
-  console.log(savedMovies);
+
   function toggleMenu() {
     setIsMenuOpen(!isMenuOpen);
   }
@@ -142,7 +142,8 @@ function App() {
         }
       })
       .catch((err) => {
-        console.log(err);
+        setPopupTitle('Что-то пошло не так! Ошибка сохранения или удаления фильма.');
+        togglePopup();
       });
   }
 

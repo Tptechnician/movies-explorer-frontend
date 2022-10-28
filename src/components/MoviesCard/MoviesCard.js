@@ -15,7 +15,7 @@ function MoviesCard({ film, toggleSavedMovies, savedMovies }) {
     toggleSavedMovies(film, saved, savedMovieId);
   }
 
-  function getFilmDuration(mins) {
+  function getMovieDuration(mins) {
     return `${Math.floor(mins / 60)}ч ${mins % 60}м`;
   }
 
@@ -52,7 +52,7 @@ function MoviesCard({ film, toggleSavedMovies, savedMovies }) {
           />
         )}
       </div>
-      <p className='movieCard__duration'>{getFilmDuration(film.duration)}</p>
+      <p className='movieCard__duration'>{getMovieDuration(film.duration)}</p>
     </li>
   );
 }
