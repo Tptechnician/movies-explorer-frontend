@@ -9,6 +9,7 @@ import LogoLinkConteiner from '../LogoLinkConteiner/LogoLinkConteiner';
 const configurationInput = {
   password: {
     minLength: '6',
+    type: 'password',
   },
 };
 

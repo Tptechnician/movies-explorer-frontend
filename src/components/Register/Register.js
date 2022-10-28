@@ -8,11 +8,13 @@ import LogoLinkConteiner from '../LogoLinkConteiner/LogoLinkConteiner';
 
 const configurationInput = {
   name: {
+    type: 'text',
     minLength: '2',
     maxLength: '40',
     pattern: '[a-zA-Zа-яёА-ЯЁ -]{2,40}',
   },
   password: {
+    type: 'password',
     minLength: '6',
   },
 };
