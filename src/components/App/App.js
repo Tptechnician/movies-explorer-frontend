@@ -56,10 +56,12 @@ function App() {
     setIsLoading(true);
     MainApi.authorize(data)
       .then((data) => {
-        localStorage.setItem('loggedIn', 'true');
-        handleCheckToken();
-        setLoggedIn(true);
-        history.push('/movies');
+        if (data) {
+          localStorage.setItem('loggedIn', 'true');
+          handleCheckToken();
+          setLoggedIn(true);
+          history.push('/movies');
+        }
       })
       .catch((err) => {
         setPopupTitle('Что-то пошло не так! Ошибка авторизации.');
