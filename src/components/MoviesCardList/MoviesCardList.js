@@ -62,11 +62,15 @@ function MoviesCardList({ initialCards, toggleSavedMovies, savedMovies }) {
       } else {
         setIsShowButtonMoreMovies(true);
       }
-    } else if (pathname === '/saved-movies') {
+    }
+  }, [initialCards, numberMoviesToRender]);
+
+  useEffect(() => {
+    if (pathname === '/saved-movies') {
       setMoviesToRender(savedMovies);
       setIsShowButtonMoreMovies(false);
     }
-  }, [initialCards, numberMoviesToRender, savedMovies]);
+  }, [savedMovies]);
 
   return (
     <section className='moviesCards'>

@@ -11,6 +11,10 @@ class MainApi {
     return res.json();
   }
 
+  getUserData() {
+    return Promise.all([this.checkToken(), this.getSavedMovies()]);
+  }
+
   register(data) {
     return fetch(`${this._url}/signup`, {
       method: 'POST',

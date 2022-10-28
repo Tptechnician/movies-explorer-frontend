@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -57,8 +57,7 @@ function App() {
     MainApi.authorize(data)
       .then((data) => {
         localStorage.setItem('loggedIn', 'true');
-        setCurrentUser(data.user);
-        setSavedMovies(getMovies());
+        handleCheckToken();
         setLoggedIn(true);
         history.push('/movies');
       })
@@ -86,27 +85,6 @@ function App() {
       });
   }
 
-  function handleCheckToken() {
-    MainApi.checkToken().then(
-      (data) => {
-        setCurrentUser(data);
-        getMovies();
-        setLoggedIn(true);
-        history.push('/movies');
-      },
-      (err) => {
-        console.log(err);
-      },
-    );
-  }
-
-  useEffect(() => {
-    const loggedIn = localStorage.getItem('loggedIn');
-    if (loggedIn) {
-      handleCheckToken();
-    }
-  }, []);
-
   function handleLoggedOut() {
     MainApi.loggedOut().then(
       (res) => {
@@ -124,21 +102,41 @@ function App() {
     );
   }
 
-  function getMovies() {
+  function getSaveMovies() {
     MainApi.getSavedMovies()
-      .then((savedMovies) => {
-        setSavedMovies(savedMovies);
+      .then((saveMovies) => {
+        setSavedMovies(saveMovies);
       })
       .catch((err) => {
         console.log(err);
       });
   }
 
+  function handleCheckToken() {
+    MainApi.getUserData()
+      .then(([userData, saveMovies]) => {
+        setCurrentUser(userData);
+        setSavedMovies(saveMovies);
+        setLoggedIn(true);
+        history.push('/movies');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  useEffect(() => {
+    const loggedIn = localStorage.getItem('loggedIn');
+    if (loggedIn) {
+      handleCheckToken();
+    }
+  }, []);
+
   function toggleSavedMovies(movie, saved, id) {
     MainApi.changeSavedMoviesStatus(movie, saved, id)
       .then((newMovies) => {
         if (newMovies) {
-          getMovies();
+          getSaveMovies();
         }
       })
       .catch((err) => {

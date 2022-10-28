@@ -1,6 +1,7 @@
 .portfolio {
-  margin: 0;
-  padding: 101px 70px 106px;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 101px calc((100vw - 1140px) / 2) 106px;
 }
 
 .portfolio__title {
@@ -58,6 +59,12 @@
   background-position: center;
   width: 30px;
   height: 30px;
+}
+
+@media (min-width: 769px) and (max-width: 1240px) {
+  .portfolio {
+    padding: 101px 50px 106px;
+  }
 }
 
 @media (min-width: 426px) and (max-width: 768px) {

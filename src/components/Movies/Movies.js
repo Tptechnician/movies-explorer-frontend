@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Movies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesApi from '../../utils/MoviesApi';
@@ -107,8 +107,8 @@ function Movies({ toggleSavedMovies, savedMovies }) {
         ) : (
           <MoviesCardList
             initialCards={foundMovies}
-            toggleSavedMovies={toggleSavedMovies}
             savedMovies={savedMovies}
+            toggleSavedMovies={toggleSavedMovies}
           />
         )
       ) : (
