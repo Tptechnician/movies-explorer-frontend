@@ -15,16 +15,6 @@ export function FormValidator() {
         e.target.setCustomValidity('');
       }
     }
-    /*
-    if (name === 'name') {
-      if (e.target.validity.patternMismatch) {
-        e.target.setCustomValidity(
-          'Поле Имя может содержать только латиницу, кириллицу, пробел или дефис',
-        );
-      } else {
-        e.target.setCustomValidity('');
-      }
-    }*/
 
     setValues({ ...values, [name]: value });
     setErrors({ ...errors, [name]: e.target.validationMessage });

@@ -40,8 +40,12 @@ function App() {
   function handleRegistration(data) {
     setIsLoading(true);
     MainApi.register(data)
-      .then((data) => {
-        history.push('/signin');
+      .then((newUser) => {
+        if (newUser) {
+          handleAuthorization(data);
+          setPopupTitle('Вы успешно зарегистрировались!');
+          togglePopup();
+        }
       })
       .catch((err) => {
         setPopupTitle('Что-то пошло не так! Ошибка регистрации.');
@@ -77,6 +81,8 @@ function App() {
     MainApi.updateUser(data)
       .then((updatedUser) => {
         setCurrentUser(updatedUser);
+        setPopupTitle('Данне пользователя успешно обновлены');
+        togglePopup();
       })
       .catch((err) => {
         setPopupTitle('Что-то пошло не так! Ошибка обновления пользователя.');

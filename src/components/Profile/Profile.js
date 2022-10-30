@@ -7,11 +7,10 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 const configurationInput = {
   name: {
+    type: 'text',
     minLength: '2',
     maxLength: '40',
-  },
-  password: {
-    minLength: '6',
+    pattern: '[a-zA-Zа-яёА-ЯЁ -]{2,40}',
   },
 };
 
@@ -30,6 +29,9 @@ const styleConfig = {
 function Profile({ loggedOut, updateUser }) {
   const currentUser = React.useContext(CurrentUserContext);
   const { values, isValid, errors, resetErrors, handleChange, setValues } = FormValidator({});
+  const [currentName, setCurrentName] = useState(true);
+  const [currentEmail, setCurrentEmail] = useState(true);
+  const [visibleButton, setVisibleButton] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -38,8 +40,29 @@ function Profile({ loggedOut, updateUser }) {
   }
 
   useEffect(() => {
+    if (currentUser.name === values.name) {
+      setCurrentName(false);
+    } else {
+      setCurrentName(true);
+    }
+    if (currentUser.email === values.email) {
+      setCurrentEmail(false);
+    } else {
+      setCurrentEmail(true);
+    }
+  }, [values]);
+
+  useEffect(() => {
     setValues({ name: currentUser.name, email: currentUser.email });
   }, [currentUser]);
+
+  useEffect(() => {
+    if ((currentEmail === currentName) === !isValid) {
+      setVisibleButton(true);
+    } else {
+      setVisibleButton(false);
+    }
+  }, [isValid, currentName, currentEmail]);
 
   const linkAuthorization = (
     <button className='form__button__login-out' onClick={loggedOut}>
@@ -53,7 +76,9 @@ function Profile({ loggedOut, updateUser }) {
         title={`Привет, ${currentUser.name}!`}
         name='login'
         onSubmit={handleSubmit}
-        isDisabled={isValid}
+        isDisabled={visibleButton}
+        //currentNameDisabled={currentName}
+        // currentEmailDisabled={currentEmail}
         buttonText='Редактировать'
         linkAuthorization={linkAuthorization}
         styleConfig={styleConfig}

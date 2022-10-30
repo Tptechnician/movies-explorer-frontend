@@ -5,6 +5,8 @@ function Form({
   title,
   onSubmit,
   isDisabled,
+  currentNameDisabled,
+  currentEmailDisabled,
   buttonText,
   linkAuthorization,
   styleConfig,
