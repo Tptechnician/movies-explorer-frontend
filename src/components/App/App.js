@@ -129,7 +129,13 @@ function App() {
         history.push('/movies');
       })
       .catch((err) => {
-        console.log(err);
+        setPopupTitle('Что-то пошло не так! Ошибка авторизации.');
+        togglePopup();
+        localStorage.removeItem('loggedIn');
+        localStorage.removeItem('movies');
+        localStorage.removeItem('moviesInputSearch');
+        localStorage.removeItem('moviesInputCheckbox');
+        history.push('/');
       });
   }
 
