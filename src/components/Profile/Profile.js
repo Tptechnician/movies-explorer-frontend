@@ -29,8 +29,8 @@ const styleConfig = {
 function Profile({ loggedOut, updateUser }) {
   const currentUser = React.useContext(CurrentUserContext);
   const { values, isValid, errors, resetErrors, handleChange, setValues } = FormValidator({});
-  const [currentName, setCurrentName] = useState(true);
-  const [currentEmail, setCurrentEmail] = useState(true);
+  const [currentName, setCurrentName] = useState(false);
+  const [currentEmail, setCurrentEmail] = useState(false);
   const [visibleButton, setVisibleButton] = useState(false);
 
   function handleSubmit(e) {
@@ -41,14 +41,14 @@ function Profile({ loggedOut, updateUser }) {
 
   useEffect(() => {
     if (currentUser.name === values.name) {
-      setCurrentName(false);
-    } else {
       setCurrentName(true);
+    } else {
+      setCurrentName(false);
     }
     if (currentUser.email === values.email) {
-      setCurrentEmail(false);
-    } else {
       setCurrentEmail(true);
+    } else {
+      setCurrentEmail(false);
     }
   }, [values]);
 
@@ -57,7 +57,9 @@ function Profile({ loggedOut, updateUser }) {
   }, [currentUser]);
 
   useEffect(() => {
-    if ((currentEmail === currentName) === !isValid) {
+    const currentInput = [currentEmail, currentName].filter((i) => i === false);
+
+    if (currentInput.length && isValid) {
       setVisibleButton(true);
     } else {
       setVisibleButton(false);
