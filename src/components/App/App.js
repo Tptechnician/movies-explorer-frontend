@@ -153,7 +153,7 @@ function App() {
         togglePopup();
       });
   }
-  console.log(history);
+
   useEffect(() => {
     const localStorageloggedIn = JSON.parse(localStorage.getItem('loggedIn'));
 
