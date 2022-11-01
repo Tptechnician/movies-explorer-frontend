@@ -155,13 +155,20 @@ function App() {
   }
 
   function handleUserData() {
-    MainApi.checkToken()
-      .then((user) => {
-        setCurrentUser(user);
+    MainApi.getUserData()
+      .then(([userData, saveMovies]) => {
+        setCurrentUser(userData);
+        setSavedMovies(saveMovies);
       })
       .catch((err) => {
-        setPopupTitle('Что-то пошло не так! Ошибка запроса данных пользователя');
+        setPopupTitle('Что-то пошло не так! Ошибка авторизации.');
         togglePopup();
+        setLoggedIn(false);
+        localStorage.removeItem('loggedIn');
+        localStorage.removeItem('movies');
+        localStorage.removeItem('searchMovies');
+        localStorage.removeItem('moviesInputSearch');
+        localStorage.removeItem('moviesInputCheckbox');
       });
   }
 
