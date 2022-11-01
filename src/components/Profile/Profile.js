@@ -67,7 +67,7 @@ function Profile({ loggedOut, updateUser }) {
   }, [isValid, currentName, currentEmail]);
 
   const linkAuthorization = (
-    <button className='form__button__login-out' onClick={loggedOut}>
+    <button className='form__button__login-out' type='button' onClick={loggedOut}>
       Выйти из аккаунта
     </button>
   );
