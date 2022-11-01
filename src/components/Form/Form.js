@@ -17,7 +17,7 @@ function Form({
         {children}
         <button
           className={`${styleConfig.button} ${isDisabled ? styleConfig.buttonActive : ''} `}
-          type='submit'
+          type='button'
           disabled={!isDisabled}
           onClick={onSubmit}
         >
