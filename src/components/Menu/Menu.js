@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './Menu.css';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, NavLink, Route, Switch } from 'react-router-dom';
 
 function Menu({ isOpen, onToggleMenu }) {
   useEffect(() => {
@@ -27,24 +27,36 @@ function Menu({ isOpen, onToggleMenu }) {
   return (
     <div className={`${isOpen ? 'menu menu_open' : 'menu'}`} onClick={handleClickClose}>
       <div className={`${isOpen ? 'menu__content menu__content_open' : 'menu__content'}`}>
-        <button className="menu__close" type="button" onClick={onToggleMenu} />
+        <button className='menu__close' type='button' onClick={onToggleMenu} />
         <Switch>
-          <Route path="/">
-            <nav className="menu__navigation">
-              <Link className="menu__navigation__link-main" to="/" onClick={onToggleMenu}>
+          <Route path='/'>
+            <nav className='menu__navigation'>
+              <NavLink
+                className='menu__navigation__link'
+                activeClassName='menu__navigation__link_active'
+                exact
+                to='/'
+                onClick={onToggleMenu}
+              >
                 Главная
-              </Link>
-              <Link className="menu__navigation__link-movies" to="/movies" onClick={onToggleMenu}>
+              </NavLink>
+              <NavLink
+                className='menu__navigation__link'
+                activeClassName='menu__navigation__link_active'
+                to='/movies'
+                onClick={onToggleMenu}
+              >
                 Фильмы
-              </Link>
-              <Link
-                className="menu__navigation__link-saved-movies"
-                to="/saved-movies"
+              </NavLink>
+              <NavLink
+                className='menu__navigation__link'
+                activeClassName='menu__navigation__link_active'
+                to='/saved-movies'
                 onClick={onToggleMenu}
               >
                 Сохранённые фильмы
-              </Link>
-              <Link className="menu__navigation__link-button" to="/profile" onClick={onToggleMenu}>
+              </NavLink>
+              <Link className='menu__navigation__link-button' to='/profile' onClick={onToggleMenu}>
                 Аккаунт
               </Link>
             </nav>

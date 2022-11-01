@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -153,11 +153,14 @@ function App() {
         togglePopup();
       });
   }
-
+  console.log(history);
   useEffect(() => {
-    const loggedIn = localStorage.getItem('loggedIn');
-    if (loggedIn) {
+    const localStorageloggedIn = JSON.parse(localStorage.getItem('loggedIn'));
+
+    if (localStorageloggedIn && pathname === '/') {
       handleCheckToken();
+    } else if (localStorageloggedIn) {
+      setLoggedIn(localStorageloggedIn);
     }
   }, []);
 

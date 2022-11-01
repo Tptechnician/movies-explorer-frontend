@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Profile.css';
-import { FormValidator } from '../../utils/FormValidator';
+import { useFormValidator } from '../../utils/useFormValidator';
 import Form from '../Form/Form';
 import FormInput from '../Form/FormInput/FormInput';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -28,7 +28,7 @@ const styleConfig = {
 
 function Profile({ loggedOut, updateUser }) {
   const currentUser = React.useContext(CurrentUserContext);
-  const { values, isValid, errors, resetErrors, handleChange, setValues } = FormValidator({});
+  const { values, isValid, errors, resetErrors, handleChange, setValues } = useFormValidator({});
   const [currentName, setCurrentName] = useState(false);
   const [currentEmail, setCurrentEmail] = useState(false);
   const [visibleButton, setVisibleButton] = useState(false);

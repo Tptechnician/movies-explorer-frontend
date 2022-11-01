@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './SearchForm.css';
 import { ReactComponent as SearchFormIcon } from '../../images/searchform-icon.svg';
-import { FormValidator } from '../../utils/FormValidator';
+import { useFormValidator } from '../../utils/useFormValidator';
 
 function SearchForm({ formValid, textError, onSearch, onCheckbox, checkbox, inputValue }) {
-  const { values, isValid, handleChange, setValues } = FormValidator({});
+  const { values, isValid, handleChange, setValues } = useFormValidator({});
 
   function handleSubmit(e) {
     e.preventDefault();

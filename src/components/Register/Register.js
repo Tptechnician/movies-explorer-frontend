@@ -1,7 +1,7 @@
 import React from 'react';
 import './Register.css';
 import { Link } from 'react-router-dom';
-import { FormValidator } from '../../utils/FormValidator';
+import { useFormValidator } from '../../utils/useFormValidator';
 import Form from '../Form/Form';
 import FormInput from '../Form/FormInput/FormInput';
 import LogoLinkConteiner from '../LogoLinkConteiner/LogoLinkConteiner';
@@ -32,7 +32,7 @@ const styleConfig = {
 };
 
 function Register({ onSubmit }) {
-  const { values, isValid, errors, resetErrors, handleChange } = FormValidator({});
+  const { values, isValid, errors, resetErrors, handleChange } = useFormValidator({});
 
   function handleSubmit(e) {
     e.preventDefault();

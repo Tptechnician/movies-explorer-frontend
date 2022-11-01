@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import isEmail from 'validator/lib/isEmail';
 
-export function FormValidator() {
+export function useFormValidator() {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);

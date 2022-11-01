@@ -4,6 +4,22 @@ import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
 function MoviesCardList({ initialCards, toggleSavedMovies, savedMovies }) {
+  const SIZE_WIDTH_BIG = 1194;
+  const SIZE_WIDTH_INTERMEDIATE = 906;
+  const SIZE_WIDTH_MEDIUM = 765;
+  const SIZE_WIDTH_SMALL = 320;
+
+  const NUMBER_MOVIES_TO_RENDER_BIG = 12;
+  const NUMBER_MOVIES_TO_RENDER_INTERMEDIATE = 9;
+  const NUMBER_MOVIES_TO_RENDER_MEDIUM = 8;
+  const NUMBER_MOVIES_TO_RENDER_SMALL = 5;
+
+  const NUMBER_MOVIES_TO_ADD_BIG = 4;
+  const NUMBER_MOVIES_TO_ADD_INTERMEDIATE = 3;
+  const NUMBER_MOVIES_TO_ADD_MEDIUM = 2;
+
+  const NUMBER_ZERO = 0;
+
   const { pathname } = useLocation();
   const [sizeWidth, setSizeWidth] = useState('');
   const [moviesToRender, setMoviesToRender] = useState([]);
@@ -27,23 +43,23 @@ function MoviesCardList({ initialCards, toggleSavedMovies, savedMovies }) {
   }
 
   function countNumberMoviesToRender() {
-    if (sizeWidth >= 1194) {
-      setNumberMoviesToRender(12);
-      setNumberMoviesToAdd(4);
-    } else if (sizeWidth < 1194 && sizeWidth >= 906) {
-      setNumberMoviesToRender(9);
-      setNumberMoviesToAdd(3);
-    } else if (sizeWidth < 905 && sizeWidth >= 765) {
-      setNumberMoviesToRender(8);
-      setNumberMoviesToAdd(2);
-    } else if (sizeWidth < 764 && sizeWidth >= 320) {
-      setNumberMoviesToRender(5);
-      setNumberMoviesToAdd(2);
+    if (sizeWidth >= SIZE_WIDTH_BIG) {
+      setNumberMoviesToRender(NUMBER_MOVIES_TO_RENDER_BIG);
+      setNumberMoviesToAdd(NUMBER_MOVIES_TO_ADD_BIG);
+    } else if (sizeWidth < SIZE_WIDTH_BIG && sizeWidth >= SIZE_WIDTH_INTERMEDIATE) {
+      setNumberMoviesToRender(NUMBER_MOVIES_TO_RENDER_INTERMEDIATE);
+      setNumberMoviesToAdd(NUMBER_MOVIES_TO_ADD_INTERMEDIATE);
+    } else if (sizeWidth < SIZE_WIDTH_INTERMEDIATE && sizeWidth >= SIZE_WIDTH_MEDIUM) {
+      setNumberMoviesToRender(NUMBER_MOVIES_TO_RENDER_MEDIUM);
+      setNumberMoviesToAdd(NUMBER_MOVIES_TO_ADD_MEDIUM);
+    } else if (sizeWidth < SIZE_WIDTH_MEDIUM && sizeWidth >= SIZE_WIDTH_SMALL) {
+      setNumberMoviesToRender(NUMBER_MOVIES_TO_RENDER_SMALL);
+      setNumberMoviesToAdd(NUMBER_MOVIES_TO_ADD_MEDIUM);
     }
   }
 
   function handleAddMoreMovies() {
-    setMoviesToRender(initialCards.slice(0, moviesToRender.length + numberMoviesToAdd));
+    setMoviesToRender(initialCards.slice(NUMBER_ZERO, moviesToRender.length + numberMoviesToAdd));
     if (moviesToRender.length >= initialCards.length - numberMoviesToAdd) {
       setIsShowButtonMoreMovies(false);
     }
@@ -56,7 +72,7 @@ function MoviesCardList({ initialCards, toggleSavedMovies, savedMovies }) {
 
   useEffect(() => {
     if (pathname === '/movies') {
-      setMoviesToRender(initialCards.slice(0, numberMoviesToRender));
+      setMoviesToRender(initialCards.slice(NUMBER_ZERO, numberMoviesToRender));
       if (initialCards.length <= numberMoviesToRender) {
         setIsShowButtonMoreMovies(false);
       } else {
