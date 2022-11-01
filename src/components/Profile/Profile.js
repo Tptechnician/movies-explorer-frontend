@@ -79,8 +79,6 @@ function Profile({ loggedOut, updateUser }) {
         name='login'
         onSubmit={handleSubmit}
         isDisabled={visibleButton}
-        //currentNameDisabled={currentName}
-        // currentEmailDisabled={currentEmail}
         buttonText='Редактировать'
         linkAuthorization={linkAuthorization}
         styleConfig={styleConfig}

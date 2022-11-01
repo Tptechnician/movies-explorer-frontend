@@ -8,8 +8,8 @@ function SearchForm({ formValid, textError, onSearch, onCheckbox, checkbox, inpu
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (isValid) {
-      formValid(isValid);
+    if (values.search) {
+      formValid(true);
       onSearch(values.search, checkbox);
     } else {
       formValid(isValid);

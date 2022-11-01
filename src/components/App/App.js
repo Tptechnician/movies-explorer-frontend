@@ -15,6 +15,7 @@ import Profile from '../Profile/Profile';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import MainApi from '../../utils/MainApi';
+import MoviesApi from '../../utils/MoviesApi';
 import Popup from '../Popup/Popup';
 import Preloader from '../Preloader/Preloader';
 
@@ -63,6 +64,7 @@ function App() {
         if (data) {
           localStorage.setItem('loggedIn', 'true');
           handleCheckToken();
+          getMovies();
           setLoggedIn(true);
           history.push('/movies');
         }
@@ -100,6 +102,7 @@ function App() {
         setCurrentUser({});
         localStorage.removeItem('loggedIn');
         localStorage.removeItem('movies');
+        localStorage.removeItem('searchMovies');
         localStorage.removeItem('moviesInputSearch');
         localStorage.removeItem('moviesInputCheckbox');
         history.push('/');
@@ -133,9 +136,21 @@ function App() {
         togglePopup();
         localStorage.removeItem('loggedIn');
         localStorage.removeItem('movies');
+        localStorage.removeItem('searchMovies');
         localStorage.removeItem('moviesInputSearch');
         localStorage.removeItem('moviesInputCheckbox');
         history.push('/');
+      });
+  }
+
+  function getMovies() {
+    MoviesApi.getMovies()
+      .then((movies) => {
+        localStorage.setItem('movies', JSON.stringify(movies));
+      })
+      .catch((err) => {
+        setPopupTitle('Что-то пошло не так! Ошибка запроса к beatfilm-movies');
+        togglePopup();
       });
   }
 
@@ -195,6 +210,7 @@ function App() {
             isLoading={isLoading}
             toggleSavedMovies={toggleSavedMovies}
             savedMovies={savedMovies}
+            getMovies={getMovies}
           />
           <ProtectedRoute
             path='/saved-movies'

@@ -5,52 +5,51 @@ import MoviesApi from '../../utils/MoviesApi';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
 
-function Movies({ toggleSavedMovies, savedMovies }) {
+function Movies({ toggleSavedMovies, savedMovies, getMovies }) {
   const [searchFormValid, setSearchFormValid] = useState(true);
   const [checkbox, setСheckbox] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [textError, setTextError] = useState('Введите название фильма для поиска');
+  const [filterMovies, setFilterMovies] = useState([]);
   const [foundMovies, setFoundMovies] = useState(null);
 
   function handleСheckboxChange() {
-    const newСheckbox = !checkbox;
-    setСheckbox(newСheckbox);
+    setСheckbox(!checkbox);
   }
 
   function handleSearchMovies(inputSearch, checkbox) {
     setIsLoading(true);
-    MoviesApi.getMovies()
-      .then((movies) => {
-        const filterMovies = movies.filter(({ nameRU }) =>
-          nameRU.toLowerCase().includes(inputSearch.toLowerCase()),
-        );
-        if (checkbox) {
-          searchMoviesOnCheckbox(filterMovies, inputSearch, checkbox);
-        } else {
-          searchMoviesOffCheckbox(filterMovies, inputSearch, checkbox);
-        }
-      })
-      .catch((err) => {
-        setTextError(
-          'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз',
-        );
-        setSearchFormValid(false);
-        localStorage.removeItem('movies');
-        localStorage.removeItem('moviesInputSearch');
-        localStorage.removeItem('moviesInputCheckbox');
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    const localStorageMovies = JSON.parse(localStorage.getItem('movies'));
+    try {
+      const searchMovies = localStorageMovies.filter(({ nameRU }) =>
+        nameRU.toLowerCase().includes(inputSearch.toLowerCase()),
+      );
+      setFilterMovies(searchMovies);
+      localStorage.setItem('searchMovies', JSON.stringify(searchMovies));
+      localStorage.setItem('moviesInputSearch', inputSearch);
+      if (checkbox) {
+        searchMoviesOnCheckbox(searchMovies, checkbox);
+      } else {
+        searchMoviesOffCheckbox(searchMovies, checkbox);
+      }
+    } catch (err) {
+      setTextError(
+        'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного, перезагрузите страницу и попробуйте ещё раз',
+      );
+      setSearchFormValid(false);
+      //localStorage.removeItem('searchMovies');
+      // localStorage.removeItem('moviesInputSearch');
+      // localStorage.removeItem('moviesInputCheckbox');
+    } finally {
+      setIsLoading(false);
+    }
   }
 
-  function searchMoviesOnCheckbox(filterMovies, inputSearch, checkbox) {
-    const shortFilms = filterMovies.filter(({ duration }) => duration <= 40);
-    if (filterMovies.length) {
+  function searchMoviesOnCheckbox(searchMovies, checkbox) {
+    const shortFilms = searchMovies.filter(({ duration }) => duration <= 40);
+    if (searchMovies.length) {
       setFoundMovies(shortFilms);
-      localStorage.setItem('movies', JSON.stringify(shortFilms));
-      localStorage.setItem('moviesInputSearch', inputSearch);
       localStorage.setItem('moviesInputCheckbox', checkbox);
     } else {
       setTextError('Ничего не найдено');
@@ -58,11 +57,10 @@ function Movies({ toggleSavedMovies, savedMovies }) {
     }
   }
 
-  function searchMoviesOffCheckbox(filterMovies, inputSearch, checkbox) {
-    if (filterMovies.length) {
-      setFoundMovies(filterMovies);
-      localStorage.setItem('movies', JSON.stringify(filterMovies));
-      localStorage.setItem('moviesInputSearch', inputSearch);
+  function searchMoviesOffCheckbox(searchMovies, checkbox) {
+    if (searchMovies.length) {
+      setFoundMovies(searchMovies);
+
       localStorage.setItem('moviesInputCheckbox', checkbox);
     } else {
       setTextError('Ничего не найдено');
@@ -72,13 +70,19 @@ function Movies({ toggleSavedMovies, savedMovies }) {
 
   useEffect(() => {
     const localStorageMovies = localStorage.getItem('movies');
-    if (localStorageMovies) {
-      const filterMovies = JSON.parse(localStorageMovies);
-      setFoundMovies(filterMovies);
-    }
-
+    const localStorageSearchMovies = localStorage.getItem('searchMovies');
     const localStorageMoviesInputSearch = localStorage.getItem('moviesInputSearch');
     const localStorageMoviesInputCheckbox = localStorage.getItem('moviesInputCheckbox');
+
+    if (!localStorageMovies) {
+      getMovies();
+    }
+
+    if (localStorageSearchMovies) {
+      const searchedMovies = JSON.parse(localStorageSearchMovies);
+
+      setFilterMovies(searchedMovies);
+    }
 
     if (localStorageMoviesInputSearch) {
       setInputValue(localStorageMoviesInputSearch);
@@ -88,6 +92,12 @@ function Movies({ toggleSavedMovies, savedMovies }) {
       setСheckbox(true);
     }
   }, []);
+
+  useEffect(() => {
+    checkbox
+      ? searchMoviesOnCheckbox(filterMovies, checkbox)
+      : searchMoviesOffCheckbox(filterMovies, checkbox);
+  }, [checkbox, filterMovies]);
 
   return (
     <main className='movies'>
