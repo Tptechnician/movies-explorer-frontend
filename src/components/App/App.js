@@ -154,13 +154,25 @@ function App() {
       });
   }
 
+  function handleUserData() {
+    MainApi.checkToken()
+      .then((user) => {
+        setCurrentUser(user);
+      })
+      .catch((err) => {
+        setPopupTitle('Что-то пошло не так! Ошибка запроса данных пользователя');
+        togglePopup();
+      });
+  }
+
   useEffect(() => {
-    const localStorageloggedIn = JSON.parse(localStorage.getItem('loggedIn'));
+    const localStorageloggedIn = localStorage.getItem('loggedIn');
 
     if (localStorageloggedIn && pathname === '/') {
       handleCheckToken();
     } else if (localStorageloggedIn) {
       setLoggedIn(localStorageloggedIn);
+      handleUserData();
     }
   }, []);
 
