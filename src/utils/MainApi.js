@@ -114,7 +114,7 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  url: 'http://api.movies.tptechnician.nomoredomains.icu',
+  url: 'https://api.movies.tptechnician.nomoredomains.icu',
   headers: {
     'Content-Type': 'application/json',
   },
