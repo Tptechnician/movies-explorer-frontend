@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Profile.css';
-import { FormValidator } from '../../utils/FormValidator';
+import { useFormValidator } from '../../utils/useFormValidator';
 import Form from '../Form/Form';
 import FormInput from '../Form/FormInput/FormInput';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 const configurationInput = {
   name: {
+    type: 'text',
     minLength: '2',
     maxLength: '40',
-  },
-  password: {
-    minLength: '6',
+    pattern: '[a-zA-Zа-яёА-ЯЁ -]{2,40}',
   },
 };
 
@@ -26,24 +26,59 @@ const styleConfig = {
   buttonActive: 'form__button_active_profile',
 };
 
-function Profile() {
-  const { values, isValid, errors, resetErrors, handleChange } = FormValidator({});
+function Profile({ loggedOut, updateUser }) {
+  const currentUser = React.useContext(CurrentUserContext);
+  const { values, isValid, errors, resetErrors, handleChange, setValues } = useFormValidator({});
+  const [currentName, setCurrentName] = useState(false);
+  const [currentEmail, setCurrentEmail] = useState(false);
+  const [visibleButton, setVisibleButton] = useState(false);
 
-  function handleSubmit(evt) {
-    evt.preventDefault();
-    // props.onSubmit(values);
+  function handleSubmit(e) {
+    e.preventDefault();
+    updateUser(values);
     resetErrors();
   }
 
-  const linkAuthorization = <button className='form__button__login-out'>Выйти из аккаунта</button>;
+  useEffect(() => {
+    if (currentUser.name === values.name) {
+      setCurrentName(true);
+    } else {
+      setCurrentName(false);
+    }
+    if (currentUser.email === values.email) {
+      setCurrentEmail(true);
+    } else {
+      setCurrentEmail(false);
+    }
+  }, [values]);
+
+  useEffect(() => {
+    setValues({ name: currentUser.name, email: currentUser.email });
+  }, [currentUser]);
+
+  useEffect(() => {
+    const currentInput = [currentEmail, currentName].filter((i) => i === false);
+
+    if (currentInput.length && isValid) {
+      setVisibleButton(true);
+    } else {
+      setVisibleButton(false);
+    }
+  }, [isValid, currentName, currentEmail]);
+
+  const linkAuthorization = (
+    <button className='form__button__login-out' type='button' onClick={loggedOut}>
+      Выйти из аккаунта
+    </button>
+  );
 
   return (
     <main className='auth auth_profile'>
       <Form
-        title='Привет, Виталий!'
+        title={`Привет, ${currentUser.name}!`}
         name='login'
         onSubmit={handleSubmit}
-        isDisabled={isValid}
+        isDisabled={visibleButton}
         buttonText='Редактировать'
         linkAuthorization={linkAuthorization}
         styleConfig={styleConfig}
@@ -51,7 +86,7 @@ function Profile() {
         <FormInput
           title='Имя'
           textErrors={errors.name}
-          value={values.name}
+          value={values.name || ''}
           name='name'
           handleChange={handleChange}
           isValid={isValid}
@@ -61,7 +96,7 @@ function Profile() {
         <FormInput
           title='E-mail'
           textErrors={errors.email}
-          value={values.email}
+          value={values.email || ''}
           name='email'
           handleChange={handleChange}
           isValid={isValid}

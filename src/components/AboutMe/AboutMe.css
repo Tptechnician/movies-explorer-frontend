@@ -1,6 +1,7 @@
 .about-me {
-  margin: 0;
-  padding: 111px 70px 0;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 111px calc((100vw - 1140px) / 2) 0;
 }
 
 .about-me__conteiner {
@@ -80,6 +81,12 @@
   height: 327px;
   border-radius: 10px;
   object-fit: cover;
+}
+
+@media (min-width: 769px) and (max-width: 1240px) {
+  .about-me {
+    padding: 111px 50px 0;
+  }
 }
 
 @media (min-width: 426px) and (max-width: 768px) {

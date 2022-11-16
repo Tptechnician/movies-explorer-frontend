@@ -1,6 +1,7 @@
 .techs {
-  margin: 0;
-  padding: 102px 70px 100px;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 102px calc((100vw - 1140px) / 2) 100px;
   display: flex;
   flex-direction: column;
   background-color: #272727;
@@ -53,6 +54,12 @@
   color: #ffffff;
   background-color: #303030;
   border-radius: 10px;
+}
+
+@media (min-width: 769px) and (max-width: 1240px) {
+  .techs {
+    padding: 102px 50px 100px;
+  }
 }
 
 @media (min-width: 426px) and (max-width: 768px) {

@@ -38,6 +38,10 @@
   color: #fff;
 }
 
+.moviesCards__button_no-active {
+  display: none;
+}
+
 .moviesCards__button:hover {
   opacity: 0.6;
 }

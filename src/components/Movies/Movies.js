@@ -1,21 +1,143 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Movies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import { initialCards } from '../../utils/initialCards';
+import Preloader from '../Preloader/Preloader';
 
-function Movies() {
-  const [searchFormError, setSearchFormError] = useState(false);
-  const textError = 'Ошибка SearchForm';
+function Movies({ toggleSavedMovies, savedMovies, getMovies }) {
+  const [searchFormValid, setSearchFormValid] = useState(true);
+  const [checkbox, setСheckbox] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [textError, setTextError] = useState('Введите название фильма для поиска');
+  const [filterMovies, setFilterMovies] = useState([]);
+  const [foundMovies, setFoundMovies] = useState(null);
+
+  function handleСheckboxChange() {
+    setСheckbox(!checkbox);
+  }
+
+  async function handleSearchMovies(inputSearch, checkbox) {
+    setIsLoading(true);
+    const localStorageMovies = JSON.parse(localStorage.getItem('movies'));
+    try {
+      const searchMovies = localStorageMovies.filter(({ nameRU }) =>
+        nameRU.toLowerCase().includes(inputSearch.toLowerCase()),
+      );
+
+      if (searchMovies.length) {
+        localStorage.setItem('searchMovies', JSON.stringify(searchMovies));
+        setFilterMovies(searchMovies);
+        localStorage.setItem('moviesInputSearch', inputSearch);
+      }
+
+      if (checkbox) {
+        searchMoviesOnCheckbox(searchMovies, checkbox);
+      } else {
+        searchMoviesOffCheckbox(searchMovies, checkbox);
+      }
+    } catch (err) {
+      setTextError(
+        'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного, перезагрузите страницу и попробуйте ещё раз',
+      );
+      setSearchFormValid(false);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  function searchMoviesOnCheckbox(searchMovies, checkbox) {
+    const shortFilms = searchMovies.filter(({ duration }) => duration <= 40);
+    if (searchMovies.length) {
+      setFoundMovies(shortFilms);
+      localStorage.setItem('moviesInputCheckbox', checkbox);
+    } else {
+      setTextError('Ничего не найдено');
+      setFoundMovies(null);
+    }
+  }
+
+  function searchMoviesOffCheckbox(searchMovies, checkbox) {
+    if (searchMovies.length) {
+      setFoundMovies(searchMovies);
+
+      localStorage.setItem('moviesInputCheckbox', checkbox);
+    } else {
+      setTextError('Ничего не найдено');
+      setFoundMovies(null);
+    }
+  }
+
+  function filterCheckbox(filterMovies, checkbox) {
+    if (checkbox) {
+      const shortFilms = filterMovies.filter(({ duration }) => duration <= 40);
+      setFoundMovies(shortFilms);
+      localStorage.setItem('moviesInputCheckbox', checkbox);
+    } else {
+      if (filterMovies.length) {
+        setFoundMovies(filterMovies);
+        localStorage.setItem('moviesInputCheckbox', checkbox);
+      } else {
+        setTextError('Введите название фильма для поиска');
+      }
+    }
+  }
+
+  useEffect(() => {
+    const localStorageMovies = localStorage.getItem('movies');
+    const localStorageSearchMovies = localStorage.getItem('searchMovies');
+    const localStorageMoviesInputSearch = localStorage.getItem('moviesInputSearch');
+    const localStorageMoviesInputCheckbox = localStorage.getItem('moviesInputCheckbox');
+
+    if (!localStorageMovies) {
+      getMovies();
+    }
+
+    if (localStorageSearchMovies) {
+      const searchedMovies = JSON.parse(localStorageSearchMovies);
+
+      setFilterMovies(searchedMovies);
+    }
+
+    if (localStorageMoviesInputSearch) {
+      setInputValue(localStorageMoviesInputSearch);
+    }
+
+    if (localStorageMoviesInputCheckbox === 'true') {
+      setСheckbox(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    filterCheckbox(filterMovies, checkbox);
+  }, [checkbox, filterMovies]);
+
   return (
     <main className='movies'>
       <div className='movies__wrapper'>
-        <SearchForm />
+        <SearchForm
+          formValid={setSearchFormValid}
+          textError={setTextError}
+          onSearch={handleSearchMovies}
+          onCheckbox={handleСheckboxChange}
+          checkbox={checkbox}
+          inputValue={inputValue}
+        />
       </div>
-      {searchFormError ? (
-        <div className='movies__error'>{textError}</div>
+      {searchFormValid && foundMovies ? (
+        isLoading ? (
+          <Preloader />
+        ) : (
+          <MoviesCardList
+            initialCards={foundMovies}
+            savedMovies={savedMovies}
+            toggleSavedMovies={toggleSavedMovies}
+          />
+        )
       ) : (
-        <MoviesCardList initialCards={initialCards} />
+        <section className='movies__error'>
+          <h1 className='movies__error__text'>{textError}</h1>
+        </section>
       )}
     </main>
   );

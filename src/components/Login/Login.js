@@ -1,7 +1,7 @@
 import React from 'react';
 import './Login.css';
 import { Link } from 'react-router-dom';
-import { FormValidator } from '../../utils/FormValidator';
+import { useFormValidator } from '../../utils/useFormValidator';
 import Form from '../Form/Form';
 import FormInput from '../Form/FormInput/FormInput';
 import LogoLinkConteiner from '../LogoLinkConteiner/LogoLinkConteiner';
@@ -9,6 +9,7 @@ import LogoLinkConteiner from '../LogoLinkConteiner/LogoLinkConteiner';
 const configurationInput = {
   password: {
     minLength: '6',
+    type: 'password',
   },
 };
 
@@ -24,12 +25,12 @@ const styleConfig = {
   buttonActive: 'form__button_active',
 };
 
-function Login() {
-  const { values, isValid, errors, resetErrors, handleChange } = FormValidator({});
+function Login({ onSubmit }) {
+  const { values, isValid, errors, resetErrors, handleChange } = useFormValidator({});
 
-  function handleSubmit(evt) {
-    evt.preventDefault();
-    // props.onSubmit(values);
+  function handleSubmit(e) {
+    e.preventDefault();
+    onSubmit(values);
     resetErrors();
   }
 

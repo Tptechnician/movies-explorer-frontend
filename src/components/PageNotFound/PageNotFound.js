@@ -2,7 +2,7 @@ import React from 'react';
 import './PageNotFound.css';
 import { Link } from 'react-router-dom';
 
-function PageNotFound() {
+function PageNotFound({ useHistory }) {
   return (
     <section className='page-not-found'>
       <div className='page-not-found__container'>

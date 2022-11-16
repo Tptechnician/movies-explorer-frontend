@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 import './MoviesCard.css';
 
-function MoviesCard({ film }) {
+function MoviesCard({ film, toggleSavedMovies, savedMovies }) {
   const { pathname } = useLocation();
-  const [saved, setSaved] = useState(false);
+  const saved =
+    pathname === '/saved-movies' ? true : savedMovies.some((i) => i.movieId === film.id);
+  const savedMovieId =
+    pathname === '/saved-movies'
+      ? film._id
+      : Object.assign({}, savedMovies.filter((i) => i.movieId === film.id)[0])._id;
 
   function handleSaveToogle() {
-    setSaved(!saved);
-    console.log(`Фильм сохранён ${saved}`);
+    toggleSavedMovies(film, saved, savedMovieId);
   }
 
-  function handleSaveDelete() {
-    setSaved(false);
-    console.log('Фильм удалён');
-  }
-
-  function getFilmDuration(mins) {
+  function getMovieDuration(mins) {
     return `${Math.floor(mins / 60)}ч ${mins % 60}м`;
   }
 
@@ -25,7 +24,11 @@ function MoviesCard({ film }) {
       <a className='movieCard__link' href={film.trailerLink} target='_blank' rel='noreferrer'>
         <img
           className='movieCard__image'
-          src={`https://api.nomoreparties.co${film.image.url}`}
+          src={
+            pathname === '/saved-movies'
+              ? film.image
+              : `https://api.nomoreparties.co${film.image.url}`
+          }
           alt={film.nameRU}
         />
       </a>
@@ -35,7 +38,7 @@ function MoviesCard({ film }) {
           <button
             type='button'
             className='movieCard__button movieCard__button_delete'
-            onClick={handleSaveDelete}
+            onClick={handleSaveToogle}
           />
         ) : (
           <button
@@ -49,7 +52,7 @@ function MoviesCard({ film }) {
           />
         )}
       </div>
-      <p className='movieCard__duration'>{getFilmDuration(film.duration)}</p>
+      <p className='movieCard__duration'>{getMovieDuration(film.duration)}</p>
     </li>
   );
 }

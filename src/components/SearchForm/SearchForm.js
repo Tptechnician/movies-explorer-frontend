@@ -1,27 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './SearchForm.css';
 import { ReactComponent as SearchFormIcon } from '../../images/searchform-icon.svg';
+import { useFormValidator } from '../../utils/useFormValidator';
 
-function SearchForm() {
-  const [checkbox, setСheckbox] = useState(false);
+function SearchForm({ formValid, textError, onSearch, onCheckbox, checkbox, inputValue }) {
+  const { values, isValid, handleChange, setValues } = useFormValidator({});
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('Поиск фильма сработал');
+    if (values.search) {
+      formValid(true);
+      onSearch(values.search, checkbox);
+    } else {
+      formValid(isValid);
+      textError('Нужно ввести ключевое слово');
+    }
   }
 
-  function handleСheckboxChange() {
-    const newСheckbox = !checkbox;
-    setСheckbox(newСheckbox);
-    console.log(`Сheckbox сработал: ${newСheckbox}`);
-  }
+  useEffect(() => {
+    setValues({ search: inputValue });
+  }, [inputValue, setValues]);
 
   return (
-    <form className='searchForm'>
+    <form className='form searchForm' noValidate>
       <div className='searchForm__coteiner'>
         <div className='searchForm__coteiner-input'>
           <SearchFormIcon className='searchForm__icon' />
-          <input className='searchForm__input' placeholder='Фильм' type='text' required />
+          <input
+            className='searchForm__input'
+            placeholder='Фильм'
+            name='search'
+            type='text'
+            value={values.search || ''}
+            onChange={handleChange}
+            required
+          />
         </div>
         <button className='searchForm__button' type='submit' onClick={handleSubmit}>
           Найти
@@ -34,7 +47,7 @@ function SearchForm() {
             type='checkbox'
             value={checkbox}
             checked={checkbox}
-            onChange={handleСheckboxChange}
+            onChange={onCheckbox}
           />
           <span className='searchForm__slider' />
         </label>
