@@ -3,6 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import Preloader from '../Preloader/Preloader';
 
 const ProtectedRoute = ({ component: Component, ...props }) => {
+  console.log(props.isLoading);
   return (
     <Route>
       {props.isLoading ? (

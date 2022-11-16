@@ -16,6 +16,16 @@ export function useFormValidator() {
       }
     }
 
+    if (name === 'name') {
+      if (e.target.validity.patternMismatch) {
+        e.target.setCustomValidity(
+          'поле Имя должно содержать только латиницу, кириллицу, пробел или дефис.',
+        );
+      } else {
+        e.target.setCustomValidity('');
+      }
+    }
+
     setValues({ ...values, [name]: value });
     setErrors({ ...errors, [name]: e.target.validationMessage });
     setIsValid(e.target.closest('.form').checkValidity());
